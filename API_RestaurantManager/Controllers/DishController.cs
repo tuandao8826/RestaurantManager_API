@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using System.Data;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace API_RestaurantManager.Controllers
 {
@@ -11,10 +13,12 @@ namespace API_RestaurantManager.Controllers
     public class DishController : ControllerBase
     {
         private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public DishController(IConfiguration configuration)
+        public DishController(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
             _configuration = configuration;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [HttpGet]
@@ -71,6 +75,42 @@ namespace API_RestaurantManager.Controllers
             return new JsonResult("Thêm mới thành công.");
         }
 
+        // Khai báo phương thức SaveFile, nhận đối tượng Dish làm tham số
+        [Route("SaveFile")]
+        [HttpPost]
+        public JsonResult SaveFile()
+        {
+            try
+            {
+                // Nhận dữ liệu từ yêu cầu HTTP
+                var httpRequest = Request.Form;
+
+                // Lấy ra tệp tin được gửi trong yêu cầu
+                var postFile = httpRequest.Files[0];
+
+                // Lấy ra tên của tệp tin
+                string fileName = postFile.FileName;
+
+                // Tạo đường dẫn vật lý cho việc lưu trữ tệp tin trên máy chủ
+                var physicalPath = _webHostEnvironment.ContentRootPath + "/Photos/" + fileName;
+
+                // Mở một luồng để sao chép dữ liệu từ tệp tin gửi đến vào tệp tin trên máy chủ
+                using (var stream = new FileStream(physicalPath, FileMode.Create))
+                {
+                    postFile.CopyTo(stream);
+                }
+
+                // Trả về tên của tệp tin đã được lưu trữ thành công
+                return new JsonResult(fileName);
+            }
+            catch (Exception)
+            {
+                // Nếu có lỗi xảy ra, trả về tên của tệp tin mặc định
+                return new JsonResult("img-default.jpg");
+            }
+        }
+
+
         [HttpPut]
         public JsonResult Put(Dish dish)
         {
@@ -110,7 +150,7 @@ namespace API_RestaurantManager.Controllers
             DataTable table = new DataTable();
             String sqlDataSource = _configuration.GetConnectionString("RestaurantManager");
             SqlDataReader myReader;
-
+            
             using (SqlConnection sqlConnection = new SqlConnection(sqlDataSource))
             {
                 sqlConnection.Open();
