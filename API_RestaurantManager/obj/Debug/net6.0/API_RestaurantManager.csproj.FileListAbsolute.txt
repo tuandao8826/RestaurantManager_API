@@ -70,3 +70,7 @@ D:\Huflit_Study_Material\Project\course-projects\DA_RestaurantManager\DA_API_Res
 D:\Huflit_Study_Material\Project\course-projects\DA_RestaurantManager\DA_API_RestaurantManager\API_RestaurantManager\obj\Debug\net6.0\API_RestaurantManager.pdb
 D:\Huflit_Study_Material\Project\course-projects\DA_RestaurantManager\DA_API_RestaurantManager\API_RestaurantManager\obj\Debug\net6.0\API_RestaurantManager.genruntimeconfig.cache
 D:\Huflit_Study_Material\Project\course-projects\DA_RestaurantManager\DA_API_RestaurantManager\API_RestaurantManager\obj\Debug\net6.0\ref\API_RestaurantManager.dll
+D:\Huflit_Study_Material\Project\course-projects\DA_RestaurantManager\DA_API_RestaurantManager\API_RestaurantManager\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\Huflit_Study_Material\Project\course-projects\DA_RestaurantManager\DA_API_RestaurantManager\API_RestaurantManager\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\Huflit_Study_Material\Project\course-projects\DA_RestaurantManager\DA_API_RestaurantManager\API_RestaurantManager\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\Huflit_Study_Material\Project\course-projects\DA_RestaurantManager\DA_API_RestaurantManager\API_RestaurantManager\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
