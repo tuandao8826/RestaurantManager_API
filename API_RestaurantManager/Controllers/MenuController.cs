@@ -118,6 +118,31 @@ namespace API_RestaurantManager.Controllers
 
             return new JsonResult("Xóa thành công.");
         }
+
+        [Route("GetAllMenuName")]
+        [HttpGet]
+        public JsonResult GetAllMenuName()
+        {
+            string query = @"Select Name from Menus";
+
+            DataTable table = new DataTable();
+            String sqlDataSource = _configuration.GetConnectionString("RestaurantManager");
+            SqlDataReader myReader;
+
+            using (SqlConnection sqlConnection = new SqlConnection(sqlDataSource))
+            {
+                sqlConnection.Open();
+                using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                {
+                    myReader = sqlCommand.ExecuteReader();
+                    table.Load(myReader);
+                    myReader.Close();
+                    sqlConnection.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
     }
 }
 
