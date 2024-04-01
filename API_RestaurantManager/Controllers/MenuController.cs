@@ -94,7 +94,7 @@ namespace API_RestaurantManager.Controllers
             return new JsonResult("Cập nhật thành công.");
         }
 
-        [HttpDelete("{MenuId}")]
+        [HttpDelete("{menuId}")]
         public JsonResult Delete(int menuId)
         {
             string query = @"Delete from Menus" +
