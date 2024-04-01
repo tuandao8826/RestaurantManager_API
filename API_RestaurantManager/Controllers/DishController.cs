@@ -75,12 +75,12 @@ namespace API_RestaurantManager.Controllers
         public JsonResult Put(Dish dish)
         {
             string query = @"Update Dishs" +
-                $"Set " +
-                $"Name = N'{dish.Name}'," +
-                $"MenuId = {dish.MenuId}," +
-                $"DateCreate = '{dish.DateCreate}'," +
-                $"Image = '{dish.Image}'" +
-                $"Where DishId = {dish.DishId}";
+                $" Set " +
+                $" Name = N'{dish.Name}'," +
+                $" MenuId = {dish.MenuId}," +
+                $" DateCreate = '{dish.DateCreate}'," +
+                $" Image = '{dish.Image}'" +
+                $" Where DishId = {dish.DishId}";
 
             DataTable table = new DataTable();
             String sqlDataSource = _configuration.GetConnectionString("RestaurantManager");
@@ -105,7 +105,7 @@ namespace API_RestaurantManager.Controllers
         public JsonResult Delete(Dish dish)
         {
             string query = @"Delete from Dishs" +
-                $"Where DishId = {dish.DishId}";
+                $" Where DishId = {dish.DishId}";
 
             DataTable table = new DataTable();
             String sqlDataSource = _configuration.GetConnectionString("RestaurantManager");

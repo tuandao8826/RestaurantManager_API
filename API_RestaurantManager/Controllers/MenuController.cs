@@ -45,7 +45,9 @@ namespace API_RestaurantManager.Controllers
         public JsonResult Post(Menu menu)
         {
             string query = @"Insert into Menus(Name) values" +
-                $"N'{menu.Name}'";
+                $"(" +
+                $"N'{menu.Name}'" +
+                $")";
 
             DataTable table = new DataTable();
             String sqlDataSource = _configuration.GetConnectionString("RestaurantManager");
@@ -70,8 +72,8 @@ namespace API_RestaurantManager.Controllers
         public JsonResult Put(Menu menu)
         {
             string query = @"Update Menus" +
-                $"Set Name = N'{menu.Name}'" +
-                $"Where MenuId = {menu.MenuId}";
+                $" Set Name = N'{menu.Name}'" +
+                $" Where MenuId = {menu.MenuId}";
 
             DataTable table = new DataTable();
             String sqlDataSource = _configuration.GetConnectionString("RestaurantManager");
@@ -96,7 +98,7 @@ namespace API_RestaurantManager.Controllers
         public JsonResult Delete(Menu menu)
         {
             string query = @"Delete from Menus" +
-                $"Where MenuId = {menu.MenuId}";
+                $" Where MenuId = {menu.MenuId}";
 
             DataTable table = new DataTable();
             String sqlDataSource = _configuration.GetConnectionString("RestaurantManager");
