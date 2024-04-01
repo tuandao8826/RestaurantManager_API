@@ -94,11 +94,11 @@ namespace API_RestaurantManager.Controllers
             return new JsonResult("Cập nhật thành công.");
         }
 
-        [HttpDelete]
-        public JsonResult Delete(Menu menu)
+        [HttpDelete("{MenuId}")]
+        public JsonResult Delete(int menuId)
         {
             string query = @"Delete from Menus" +
-                $" Where MenuId = {menu.MenuId}";
+                $" Where MenuId = {menuId}";
 
             DataTable table = new DataTable();
             String sqlDataSource = _configuration.GetConnectionString("RestaurantManager");
